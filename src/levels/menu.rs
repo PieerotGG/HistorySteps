@@ -2,18 +2,13 @@ use app::Level;
 use piston_window::*;
 use opengl_graphics::GlGraphics;
 use settings::Settings;
-use levels::menu::Menu;
 
-pub struct Loading {
-    pub time: i32
-}
 
-impl Level for Loading {
+pub struct Menu;
+
+impl Level for Menu {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &Settings) {
-        self.time = self.time + 1;
-        if (self.time == 10000) {
-            settings.level = Box::new(Menu)
-        }
+
     }
 
     fn update(&mut self, args: &UpdateArgs) {
@@ -27,7 +22,7 @@ impl Level for Loading {
         match *args {
             
             Keyboard(k) => match k {
-                Key::Space => println!("Space"),
+                Key::Return => println!("Enter"),
                 _ => println!("{:?} is a unknow key", k)
             },
 
