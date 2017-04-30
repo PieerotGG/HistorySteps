@@ -26,15 +26,15 @@ fn main() {
 
     while let Some(e) = window.next() {
        if let Some(ref args) = e.render_args() {
-           app.level().render(args, &mut gl, app.settings);
+           app.level().render(args, &mut gl, &mut settings);
        }
 
-       if let Some(ref args) = e.update_args() {
-           app.level().update(args);
+       else if let Some(ref args) = e.update_args() {
+           app.level().update(args, &mut app.settings);
        }
 
-       if let Some(ref args) = e.press_args() {
-           app.level().key_press(args);
+       else if let Some(ref args) = e.press_args() {
+           app.level().key_press(args, &mut app.settings);
        }
 
     }

@@ -16,11 +16,11 @@ impl Level for Loading {
         }
     }
 
-    fn update(&mut self, args: &UpdateArgs) {
+    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) {
 
     }
 
-    fn key_press(&mut self, args: &Button) {
+    fn key_press(&mut self, args: &Button, settings: &mut Settings) {
         use piston_window::Button::{Keyboard, Mouse, Controller};
         use piston_window::Key;
 

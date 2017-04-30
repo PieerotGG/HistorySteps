@@ -16,14 +16,14 @@ impl<'a> HistorySteps<'a> {
         }
     }
 
-    pub fn level(&self) -> Box<Level> {
-        self.settings.level
+    pub fn level(&mut self) -> &mut Box<Level> {
+        &mut (self.settings.level)
     }
 
 }
 
 pub trait Level {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings);
-    fn update(&mut self, args: &UpdateArgs);
-    fn key_press(&mut self, args: &Button);
+    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings);
+    fn key_press(&mut self, args: &Button, settings: &mut Settings);
 }
