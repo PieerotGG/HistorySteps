@@ -22,11 +22,11 @@ fn main() {
 
     let mut gl = GlGraphics::new(OpenGL::V3_2);
 
-    let mut app = HistorySteps::new(&settings);
+    let mut app = HistorySteps::new(&mut settings);
 
     while let Some(e) = window.next() {
        if let Some(ref args) = e.render_args() {
-           app.level().render(args, &mut gl, &settings);
+           app.level().render(args, &mut gl, app.settings);
        }
 
        if let Some(ref args) = e.update_args() {

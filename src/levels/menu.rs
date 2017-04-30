@@ -7,7 +7,7 @@ use settings::Settings;
 pub struct Menu;
 
 impl Level for Menu {
-    fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &Settings) {
+    fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings) {
 
     }
 

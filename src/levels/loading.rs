@@ -9,7 +9,7 @@ pub struct Loading {
 }
 
 impl Level for Loading {
-    fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &Settings) {
+    fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings) {
         self.time = self.time + 1;
         if (self.time == 10000) {
             settings.level = Box::new(Menu)
