@@ -11,8 +11,8 @@ impl Level for Menu {
 
     }
 
-    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) {
-
+    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) -> Option<Box<Level>> {
+        None
     }
 
     fn key_press(&mut self, args: &Button, settings: &mut Settings) {
@@ -20,7 +20,7 @@ impl Level for Menu {
         use piston_window::Key;
 
         match *args {
-            
+
             Keyboard(k) => match k {
                 Key::Return => println!("Enter"),
                 _ => println!("{:?} is a unknow key", k)

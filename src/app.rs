@@ -4,26 +4,23 @@ use piston_window::Button;
 use levels::loading::Loading;
 use settings::Settings;
 
-pub struct HistorySteps<'a> {
-    pub settings: &'a mut Settings
+pub struct HistorySteps {
+    pub settings: Settings,
+    pub level: Box<Level>
 }
 
-impl<'a> HistorySteps<'a> {
+impl HistorySteps {
 
-    pub fn new(settings: &'a mut Settings) -> HistorySteps<'a> {
+    pub fn new(settings: Settings, level: Box<Level>) -> HistorySteps {
         HistorySteps {
-            settings: settings
+            settings: settings,
+            level: level
         }
     }
-
-    pub fn level(&mut self) -> &mut Box<Level> {
-        &mut (self.settings.level)
-    }
-
 }
 
 pub trait Level {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings);
-    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings);
+    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) -> Option<Box<Level>>;
     fn key_press(&mut self, args: &Button, settings: &mut Settings);
 }

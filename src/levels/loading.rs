@@ -10,13 +10,16 @@ pub struct Loading {
 
 impl Level for Loading {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings) {
-        self.time = self.time + 1;
-        if (self.time == 10000) {
-            settings.level = Box::new(Menu)
-        }
     }
 
-    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) {
+    fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) -> Option<Box<Level>> {
+        self.time += 1;
+        println!("{}", self.time);
+        if self.time == 1000 {
+            Some(Box::new(Menu))
+        } else {
+            None
+        }
 
     }
 
@@ -25,7 +28,7 @@ impl Level for Loading {
         use piston_window::Key;
 
         match *args {
-            
+
             Keyboard(k) => match k {
                 Key::Space => println!("Space"),
                 _ => println!("{:?} is a unknow key", k)
