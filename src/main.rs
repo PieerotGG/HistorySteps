@@ -1,6 +1,7 @@
 extern crate piston_window;
 extern crate opengl_graphics;
 extern crate sdl2_window;
+extern crate graphics;
 
 mod app;
 mod levels;
@@ -16,7 +17,7 @@ use settings::Settings;
 fn main() {
     let mut settings: Settings = Settings { };
 
-    let mut window: PistonWindow<Sdl2Window> = WindowSettings::new("HistorySteps", [500, 200])
+    let mut window: PistonWindow<Sdl2Window> = WindowSettings::new("HistorySteps", [1280, 720])
         .build()
         .unwrap();
 

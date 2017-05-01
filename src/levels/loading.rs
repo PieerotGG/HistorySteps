@@ -10,12 +10,14 @@ pub struct Loading {
 
 impl Level for Loading {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings) {
+       gl.draw(args.viewport(), |_, gl| {
+            clear([0.2, 0.115615161, 1.0, 1.0], gl);
+       });
     }
 
     fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) -> Option<Box<Level>> {
         self.time += 1;
-        println!("{}", self.time);
-        if self.time == 1000 {
+        if self.time == 500 {
             Some(Box::new(Menu))
         } else {
             None
