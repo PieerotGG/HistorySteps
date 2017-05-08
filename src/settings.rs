@@ -1,4 +1,3 @@
 use app::Level;
 
-pub struct Settings {
-}
+pub struct Settings {}

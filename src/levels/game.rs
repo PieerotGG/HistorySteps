@@ -4,21 +4,23 @@ use opengl_graphics::GlGraphics;
 use opengl_graphics::glyph_cache::GlyphCache;
 use settings::Settings;
 use graphics::*;
-use levels::game::Game;
 
-pub struct Menu;
 
-impl Level for Menu {
+pub struct Game {
+    pub x: f64,
+    pub y: f64,
+}
+
+impl Level for Game {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings) {
         let mut glyphes = GlyphCache::new("assets/FiraSans-Regular.ttf").unwrap();
 
         gl.draw(args.viewport(), |c, gl| {
-            clear([1.0, 1.0, 1.0, 1.0], gl);
-            text::Text::new_color([0.0, 1.0, 0.0, 1.0], 32).draw("Hello world!",
-                                                                 &mut glyphes,
-                                                                 &c.draw_state,
-                                                                 c.transform.trans(10.0, 100.0),
-                                                                 gl);
+            clear([0.0, 0.0, 0.0, 1.0], gl);
+            Rectangle::new([1.0, 1.0, 1.0, 1.0]).draw([1.0, 1.0, 20.0, 10.0],
+                                                      &c.draw_state,
+                                                      c.transform.trans(self.x, self.y),
+                                                      gl);
         });
     }
 
@@ -34,19 +36,23 @@ impl Level for Menu {
 
             Keyboard(k) => {
                 match k {
-                    Key::Return => Some(Box::new(Game { x: 0.0, y: 0.0 })),
-                    _ => None, 
+                    Key::D => self.x += 5.0,
+                    Key::Q => self.x -= 5.0,
+                    Key::Z => self.y -= 5.0,
+                    Key::S => self.y += 5.0,
+                    _ => println!("Unknow key: {:?}", k),
                 }
             }
 
             Mouse(c) => {
                 match c {
-                    _ => None,
+                    _ => println!("{:?} is an unknow click", c),
                 }
             }
 
-            _ => None, 
+            _ => println!("Unknow input type"),
 
         }
+        None
     }
 }

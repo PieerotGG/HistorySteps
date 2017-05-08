@@ -5,13 +5,14 @@ use settings::Settings;
 use levels::menu::Menu;
 
 pub struct Loading {
-    pub time: i32,
+    pub time: i32
 }
 
 impl Level for Loading {
     fn render(&mut self, args: &RenderArgs, gl: &mut GlGraphics, settings: &mut Settings) {
-        gl.draw(args.viewport(),
-                |_, gl| { clear([0.2, 0.115615161, 1.0, 1.0], gl); });
+       gl.draw(args.viewport(), |_, gl| {
+            clear([0.2, 0.115615161, 1.0, 1.0], gl);
+       });
     }
 
     fn update(&mut self, args: &UpdateArgs, settings: &mut Settings) -> Option<Box<Level>> {
@@ -30,20 +31,16 @@ impl Level for Loading {
 
         match *args {
 
-            Keyboard(k) => {
-                match k {
-                    Key::Space => println!("Space"),
-                    _ => println!("{:?} is a unknow key", k),
-                }
-            }
+            Keyboard(k) => match k {
+                Key::Space => println!("Space"),
+                _ => println!("{:?} is a unknow key", k)
+            },
 
-            Mouse(c) => {
-                match c {
-                    _ => println!("{:?} is an unknow click", c),
-                }
-            }
+            Mouse(c) => match c {
+                _ => println!("{:?} is an unknow click", c)
+            },
 
-            _ => println!("Unknow input type"),
+            _ => println!("Unknow input type")
 
         }
         None

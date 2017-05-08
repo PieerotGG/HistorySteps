@@ -15,7 +15,7 @@ use settings::Settings;
 
 
 fn main() {
-    let mut settings: Settings = Settings { };
+    let mut settings: Settings = Settings {};
 
     let mut window: PistonWindow<Sdl2Window> = WindowSettings::new("HistorySteps", [1280, 720])
         .build()
@@ -31,15 +31,18 @@ fn main() {
             app.level.render(args, &mut gl, &mut app.settings);
         }
 
-        else if let Some(ref args) = e.update_args() {
+        if let Some(ref args) = e.update_args() {
             let level = app.level.update(args, &mut app.settings);
             if let Some(level) = level {
                 app.level = level;
             }
         }
 
-        else if let Some(ref args) = e.press_args() {
-            app.level.key_press(args, &mut app.settings);
+        if let Some(ref args) = e.press_args() {
+            let level = app.level.key_press(args, &mut app.settings);
+            if let Some(level) = level {
+                app.level = level;
+            }
         }
 
     }
